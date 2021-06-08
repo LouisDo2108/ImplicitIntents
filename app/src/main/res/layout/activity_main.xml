@@ -52,6 +52,12 @@
         android:text="@string/button_share"
         android:onClick="shareText"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/screenshot_button"
+        android:text="@string/takepicture"
+        android:onClick="takeScreenshot"/>
 
 
 </LinearLayout>

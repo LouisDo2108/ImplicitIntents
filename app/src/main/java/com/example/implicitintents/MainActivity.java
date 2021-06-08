@@ -6,11 +6,13 @@ import androidx.core.app.ShareCompat;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
     private EditText mWebsiteEditText;
     private EditText mLocationEditText;
     private EditText mShareEditText;
@@ -58,5 +60,15 @@ public class MainActivity extends AppCompatActivity {
                 .setChooserTitle("Share this text with: ")
                 .setText(txt)
                 .startChooser();
+    }
+
+    public void takeScreenshot(View view) {
+        Intent takePicture = new Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
+        if(takePicture.resolveActivity(getPackageManager()) != null){
+            startActivityForResult(takePicture, REQUEST_IMAGE_CAPTURE);
+        } else {
+            Log.d("ImplicitIntent", "Can't handle this intent");
+        }
+
     }
 }
